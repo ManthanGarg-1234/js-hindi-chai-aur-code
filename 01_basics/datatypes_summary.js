@@ -41,4 +41,42 @@ console.log(typeof anotherId);
 console.log(typeof bigNumber);
 console.log(typeof heros);
 
+// read from here 
+
 // https://262.ecma-international.org/5.1/#sec-11.4.3
+
+
+
+// ***********************Memory Allocation**************************
+
+//  JavaScript Memory: Stack (for primitives) vs Heap (for non primitives)
+
+//  Core Difference
+
+// | Type | Behavior | Stored As |
+// |------|--------|----------|
+// | Primitive | Copy | Value |
+// | Non-Primitive | Reference | Address |
+
+
+let myYoutubename = "hiteshchoudharydotcom"
+
+let anotherName = myYoutubename
+anotherName="chaiaurcode"
+
+console.log(myYoutubename);
+console.log(anotherName);
+
+
+
+let userOne = {
+    email: "user@google.com",
+    upi: "user@ybl"
+}
+
+let userTwo = userOne
+userTwo.email = "hitesh@google.com"
+
+console.log(userOne.email);
+console.log(userTwo.email);
+
