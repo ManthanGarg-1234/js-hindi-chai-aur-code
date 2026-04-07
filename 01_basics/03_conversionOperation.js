@@ -1,110 +1,152 @@
-// =======================
-// 1. TYPE CHECKING
-// =======================
+// // =======================
+// // 1. TYPE CHECKING
+// // =======================
 
-let score1 = 33
-let score2 = "33"
-let score3 = "33abc"
+// let score1 = 33
+// let score2 = "33"
+// let score3 = "33abc"
 
-console.log("TYPE CHECKING:")
-console.log(typeof score1) // number
-console.log(typeof score2) // string
-console.log(typeof score3) // string
+// console.log("TYPE CHECKING:")
+// console.log(typeof score1) // number
+// console.log(typeof score2) // string
+// console.log(typeof score3) // string
 
+// // =======================
+// // 2. STRING → NUMBER
+// // =======================
 
-// =======================
-// 2. STRING → NUMBER
-// =======================
+// console.log("\nSTRING TO NUMBER:")
 
-console.log("\nSTRING TO NUMBER:")
+// let num1 = Number(score2)   // valid numeric string
+// let num2 = Number(score3)   // invalid numeric string
 
-let num1 = Number(score2)   // valid numeric string
-let num2 = Number(score3)   // invalid numeric string
+// console.log(num1) // 33
+// console.log(num2) // NaN
 
-console.log(num1) // 33
-console.log(num2) // NaN
+// // =======================
+// // 3. SPECIAL VALUES → NUMBER
+// // =======================
 
+// console.log("\nSPECIAL VALUES TO NUMBER:")
 
-// =======================
-// 3. SPECIAL VALUES → NUMBER
-// =======================
+// let score4 = null
+// let score5 = undefined
 
-console.log("\nSPECIAL VALUES TO NUMBER:")
+// console.log(Number(score4)) // 0
+// console.log(Number(score5)) // NaN
 
-let score4 = null
-let score5 = undefined
+// // =======================
+// // 4. BOOLEAN → NUMBER
+// // =======================
 
-console.log(Number(score4)) // 0
-console.log(Number(score5)) // NaN
+// console.log("\nBOOLEAN TO NUMBER:")
 
+// let score6 = true
 
-// =======================
-// 4. BOOLEAN → NUMBER
-// =======================
+// console.log(Number(score6))  // 1
+// console.log(Number(false))   // 0
 
-console.log("\nBOOLEAN TO NUMBER:")
+// // =======================
+// // 5. NON-NUMERIC STRING → NUMBER
+// // =======================
 
-let score6 = true
+// console.log("\nINVALID STRING TO NUMBER:")
 
-console.log(Number(score6))  // 1
-console.log(Number(false))   // 0
+// let score7 = "manthan"
 
+// console.log(Number(score7)) // NaN
 
-// =======================
-// 5. NON-NUMERIC STRING → NUMBER
-// =======================
+// // =======================
+// // 6. NUMBER → BOOLEAN
+// // =======================
 
-console.log("\nINVALID STRING TO NUMBER:")
+// console.log("\nNUMBER TO BOOLEAN:")
 
-let score7 = "manthan"
+// console.log(Boolean(1)) // true
+// console.log(Boolean(0)) // false
 
-console.log(Number(score7)) // NaN
+// // =======================
+// // 7. STRING → BOOLEAN
+// // =======================
 
+// console.log("\nSTRING TO BOOLEAN:")
 
-// =======================
-// 6. NUMBER → BOOLEAN
-// =======================
+// console.log(Boolean(""))        // false
+// console.log(Boolean("manthan")) // true
 
-console.log("\nNUMBER TO BOOLEAN:")
+// // =======================
+// // 8. NUMBER → STRING
+// // =======================
 
-console.log(Boolean(1)) // true
-console.log(Boolean(0)) // false
+// console.log("\nNUMBER TO STRING:")
 
+// let someNumber = 33
+// let stringNumber = String(someNumber)
 
-// =======================
-// 7. STRING → BOOLEAN
-// =======================
+// console.log(typeof someNumber)   // number
+// console.log(typeof stringNumber) // string
+// console.log(stringNumber)        // "33"
 
-console.log("\nSTRING TO BOOLEAN:")
+// // =======================
+// // 9. FINAL SUMMARY
+// // =======================
 
-console.log(Boolean(""))        // false
-console.log(Boolean("manthan")) // true
+// console.log("\nSUMMARY:")
 
+// console.log('"33"        →', Number("33"))        // 33
+// console.log('"33abc"     →', Number("33abc"))     // NaN
+// console.log('true        →', Number(true))        // 1
+// console.log('false       →', Number(false))       // 0
+// console.log('null        →', Number(null))        // 0
+// console.log('undefined   →', Number(undefined))   // NaN
+// console.log('"manthan"   →', Number("manthan"))   // NaN
 
-// =======================
-// 8. NUMBER → STRING
-// =======================
+// ******************************* Operations ******************************
 
-console.log("\nNUMBER TO STRING:")
+let value = 3;
+let negValue = -value;
+console.log(negValue)
 
-let someNumber = 33
-let stringNumber = String(someNumber)
+console.log(2+2);
+console.log(2-2);
+console.log(2*2);
+console.log(2/2);
+console.log(2**2);
+console.log(2%2);
+console.log(2^2);
 
-console.log(typeof someNumber)   // number
-console.log(typeof stringNumber) // string
-console.log(stringNumber)        // "33"
+let str1 = "hello";
+let str2 = " manthan";
+let str3 = str1 + str2;
+console.log(str3);
 
+// for all these output if not understand read ecma docs for type conversion for operations
 
-// =======================
-// 9. FINAL SUMMARY
-// =======================
+console.log("1" + 2);
 
-console.log("\nSUMMARY:")
+console.log(1 + "2");
 
-console.log('"33"        →', Number("33"))        // 33
-console.log('"33abc"     →', Number("33abc"))     // NaN
-console.log('true        →', Number(true))        // 1
-console.log('false       →', Number(false))       // 0
-console.log('null        →', Number(null))        // 0
-console.log('undefined   →', Number(undefined))   // NaN
-console.log('"manthan"   →', Number("manthan"))   // NaN
+console.log("1" + "2");
+
+console.log("1" + 2 + 2);
+
+console.log("1" + (2 + 2));
+
+console.log(1 + 2 + "2");
+
+console.log(+true); //valid but not good to write
+// console.log(true+)  //not valid
+
+console.log(+""); //gives 0 , valid ,  does not make any sense after writing
+// console.log(""+); //similarly  this is also not valid
+
+let num1, num2, num3;
+num1 = num2 = num3 = 2 + 2;
+
+let gameCounter = 100
+gameCounter++  // study about ++gameCounter and gameCounter++ (pre and post increment and decrement)
+console.log(gameCounter);
+
+//link to study
+
+// https://tc39.es/ecma262/multipage/abstract-operations.html#sec-type-conversion
