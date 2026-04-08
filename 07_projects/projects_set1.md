@@ -1,13 +1,13 @@
 # Projects related to DOM
 
-## Project link
+## project link
+[Click here](https://stackblitz.com/edit/dom-project-chaiaurcode?file=index.html)
 
-[Click here] (https://stackblitz.com/edit/dom-project-chaiaurcode?file=index.html)
+# Solution code
 
-# Solution Code
+## project 1
 
-# project 1 
-
+```javascript
 console.log("hitesh")
 const buttons = document.querySelectorAll('.button');
 const body = document.querySelector('body');
@@ -34,8 +34,11 @@ buttons.forEach(function (button) {
 });
 
 
-# project 2 
+```
 
+## project 2 solution
+
+```javascript
 const form = document.querySelector('form');
 // this usecase will give you empty
 // const height = parseInt(document.querySelector('#height').value)
@@ -59,9 +62,11 @@ form.addEventListener('submit', function (e) {
 });
 
 
+```
 
-# project 3 
+## project 3 solution code
 
+```javascript
 const clock = document.getElementById('clock');
 // const clock = document.querySelector('#clock')
 
@@ -72,9 +77,12 @@ setInterval(function () {
 }, 1000);
 
 
+```
 
-# project 4
+## project 4 solution
 
+
+```javascript
 
 let randomNumber = parseInt(Math.random() * 100 + 1);
 
@@ -169,9 +177,12 @@ function newGame() {
 }
 
 
+```
 
-# project 5
 
+# Project 5 solution
+
+```javascript
 const insert = document.getElementById('insert');
 
 window.addEventListener('keydown', (e) => {
@@ -195,9 +206,11 @@ window.addEventListener('keydown', (e) => {
 });
 
 
-# project 6
+```
 
+# Project 6 Solution
 
+```javascript
 //generate a random color
 
 const randomColor = function () {
@@ -228,3 +241,5 @@ document.querySelector('#start').addEventListener('click', startChangingColor);
 
 document.querySelector('#stop').addEventListener('click', stopChangingColor);
 
+
+```
