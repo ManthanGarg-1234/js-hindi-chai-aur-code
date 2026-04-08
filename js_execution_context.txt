@@ -1,0 +1,223 @@
+// ============================================
+// JAVASCRIPT EXECUTION CONTEXT (DEEP NOTES)
+// ============================================
+
+
+// --------------------------------------------
+// 1. WHAT IS EXECUTION CONTEXT?
+// --------------------------------------------
+// Execution Context = Environment where JS code runs
+
+// Think:
+// "JS engine ka working frame"
+
+
+// --------------------------------------------
+// 2. TYPES OF EXECUTION CONTEXT
+// --------------------------------------------
+
+// (1) GLOBAL EXECUTION CONTEXT (GEC)
+
+// Created when JS program starts
+
+// Browser:
+this === window
+
+// Node.js:
+this === {} (empty object)
+
+// IMPORTANT:
+// Only ONE Global Execution Context exists
+
+
+// (2) FUNCTION EXECUTION CONTEXT (FEC)
+
+// Created whenever a function is called
+
+function test() {
+  let a = 10;
+}
+
+test(); // creates new execution context
+
+
+// (3) EVAL EXECUTION CONTEXT (RARE)
+
+// Created when eval() is used (almost never used in real-world)
+
+
+// --------------------------------------------
+// 3. HOW EXECUTION CONTEXT WORKS (2 PHASES)
+// --------------------------------------------
+
+
+// ===== PHASE 1: MEMORY CREATION PHASE =====
+
+// Variables → initialized as undefined
+// Functions → stored completely
+
+let a = 10;
+function add(x, y) {
+  return x + y;
+}
+
+// During memory phase:
+// a = undefined
+// add = function definition
+
+
+// ===== PHASE 2: EXECUTION PHASE =====
+
+// Code runs line by line
+// Values assigned
+// Functions executed
+
+a = 10;
+add(2, 3); // function execution starts
+
+
+// --------------------------------------------
+// 4. STEP-BY-STEP EXECUTION (IMPORTANT)
+// --------------------------------------------
+
+let val1 = 10;
+let val2 = 5;
+
+function addNum(num1, num2) {
+  let total = num1 + num2;
+  return total;
+}
+
+let result1 = addNum(val1, val2);
+let result2 = addNum(10, 2);
+
+
+// -------- MEMORY PHASE --------
+// val1 → undefined
+// val2 → undefined
+// addNum → function definition
+// result1 → undefined
+// result2 → undefined
+
+
+// -------- EXECUTION PHASE --------
+// val1 = 10
+// val2 = 5
+
+// addNum called → NEW Execution Context created
+
+
+// --------------------------------------------
+// 5. FUNCTION EXECUTION CONTEXT BREAKDOWN
+// --------------------------------------------
+
+// For each function call:
+
+// 1. New Execution Context created
+// 2. Again 2 phases happen:
+
+// MEMORY PHASE:
+// num1 → undefined
+// num2 → undefined
+// total → undefined
+
+// EXECUTION PHASE:
+// num1 = actual value
+// num2 = actual value
+// total = num1 + num2
+
+
+// --------------------------------------------
+// 6. CALL STACK (CRITICAL CONCEPT)
+// --------------------------------------------
+
+// Execution contexts are managed using CALL STACK
+
+// Example flow:
+
+// Global EC pushed
+// addNum() pushed
+// addNum() popped after execution
+// next addNum() pushed
+// popped again
+
+
+// Stack visualization:
+
+// [ Global ]
+// [ addNum ]  <-- pushed
+// [ Global ]  <-- popped back
+
+
+// --------------------------------------------
+// 7. GLOBAL OBJECT (INTERVIEW TRAP)
+// --------------------------------------------
+
+// Browser:
+console.log(this); // window object
+
+// Node:
+console.log(this); // {}
+
+// DON'T CONFUSE THIS
+
+
+// --------------------------------------------
+// 8. COMMON MISTAKES (YOUR CURRENT LEVEL)
+// --------------------------------------------
+
+// ❌ Thinking variables "store value immediately"
+// → WRONG (first undefined)
+
+// ❌ Ignoring memory phase
+// → You miss hoisting concept
+
+// ❌ Not understanding new execution context on each function call
+// → leads to confusion in recursion & closures
+
+
+// --------------------------------------------
+// 9. CONNECTION WITH HOISTING
+// --------------------------------------------
+
+// Hoisting happens because of MEMORY PHASE
+
+console.log(x); // undefined (not error)
+var x = 5;
+
+// Because:
+// Memory phase → x = undefined
+// Execution phase → x = 5
+
+
+// --------------------------------------------
+// 10. FINAL MENTAL MODEL (IMPORTANT)
+// --------------------------------------------
+
+// Every JS program follows:
+
+// 1. Create Global Execution Context
+// 2. Memory Phase (allocate space)
+// 3. Execution Phase (run code)
+// 4. Function call → new Execution Context
+// 5. Managed via Call Stack
+
+
+// --------------------------------------------
+// 11. REALITY CHECK
+// --------------------------------------------
+
+// If you don't understand:
+// - Execution Context
+// - Call Stack
+// - Memory vs Execution phase
+
+// Then:
+// ❌ You will struggle in closures
+// ❌ You will fail debugging async code
+// ❌ You will get stuck in interviews
+
+
+// --------------------------------------------
+// END OF NOTES
+// --------------------------------------------
