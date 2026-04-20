@@ -17,7 +17,6 @@
 
 // Non-blocking code, on the other hand, allows other code to run while it is executing. For example, an asynchronous function that uses promises or callbacks can allow other code to run while it is waiting for a response from a server or a database. example : read a large file asynchronously, it will allow other code to run while it is reading the file, and once the file is read completely, it will execute a callback function or resolve a promise with the file data.
 
-
 // which is better Blocking or Non Blocking code?
 // Non-blocking code is generally better because it allows other code to run while it is executing, which can improve the performance and responsiveness of your application. Blocking code can cause the main thread to become unresponsive, which can lead to a poor user experience. However, there may be some cases where blocking code is necessary, such as when you need to perform a critical operation that must be completed before any other code can run. In general, it's best to use non-blocking code whenever possible to ensure that your application remains responsive and performs well.But don't always say that non blocking code is best as imagine an example of database query that needs to be executed before any other code can run, in that case blocking code may be necessary to ensure that the query is completed before any other code is executed.
 
@@ -48,122 +47,115 @@ function nonBlockingCode() {
 // -------------------- PROMISE 1 --------------------
 
 // Creating a promise (starts executing immediately)
-const promiseOne = new Promise(function(resolve, reject){
-    // Async task (simulated using setTimeout)
-    setTimeout(function(){
-        console.log('Async task is complete'); // runs after 1 sec
-        resolve(); // marks promise as fulfilled
-    }, 1000);
+const promiseOne = new Promise(function (resolve, reject) {
+  // Async task (simulated using setTimeout)
+  setTimeout(function () {
+    console.log("Async task is complete"); // runs after 1 sec
+    resolve(); // marks promise as fulfilled
+  }, 1000);
 });
 
 // Consuming promise
-promiseOne.then(function(){
-    // runs only after resolve() is called
-    console.log("Promise consumed");
+promiseOne.then(function () {
+  // runs only after resolve() is called
+  console.log("Promise consumed");
 });
-
 
 // -------------------- PROMISE 2 (No variable) --------------------
 
 // Directly creating + consuming promise
-new Promise(function(resolve, reject){
-    setTimeout(function(){
-        console.log("Async task 2");
-        resolve();
-    }, 1000);
-})
-.then(function(){
-    console.log("Async 2 resolved");
+new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    console.log("Async task 2");
+    resolve();
+  }, 1000);
+}).then(function () {
+  console.log("Async 2 resolved");
 });
-
 
 // -------------------- PROMISE 3 (Returning Data) --------------------
 
-const promiseThree = new Promise(function(resolve, reject){
-    setTimeout(function(){
-        // resolving with data (object)
-        resolve({username: "Chai", email: "chai@example.com"});
-    }, 1000);
+const promiseThree = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    // resolving with data (object)
+    resolve({ username: "Chai", email: "chai@example.com" });
+  }, 1000);
 });
 
-promiseThree.then(function(user){
-    // receives resolved data
-    console.log(user);
+promiseThree.then(function (user) {
+  // receives resolved data
+  console.log(user);
 });
-
 
 // -------------------- PROMISE 4 (CHAINING + ERROR HANDLING) --------------------
 
-const promiseFour = new Promise(function(resolve, reject){
-    setTimeout(function(){
-        let error = true; // change to false to test success
+const promiseFour = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    let error = true; // change to false to test success
 
-        if (!error) {
-            resolve({username: "hitesh", password: "123"});
-        } else {
-            reject('ERROR: Something went wrong');
-        }
-    }, 1000);
+    if (!error) {
+      resolve({ username: "hitesh", password: "123" });
+    } else {
+      reject("ERROR: Something went wrong");
+    }
+  }, 1000);
 });
 
 promiseFour
-.then((user) => {
+  .then((user) => {
     // runs if resolved
     console.log(user);
     return user.username; // passes to next .then
-})
-.then((username) => {
+  })
+  .then((username) => {
     console.log(username);
-})
-.catch(function(error){
+  })
+  .catch(function (error) {
     // runs if rejected
     console.log(error);
-})
-.finally(() => {
+  })
+  .finally(() => {
     // always runs (cleanup/logging)
     console.log("The promise is either resolved or rejected");
-});
-
+  });
 
 // -------------------- PROMISE 5 (ASYNC/AWAIT) --------------------
 
-const promiseFive = new Promise(function(resolve, reject){
-    setTimeout(function(){
-        let error = true;
+const promiseFive = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    let error = true;
 
-        if (!error) {
-            resolve({username: "javascript", password: "123"});
-        } else {
-            reject('ERROR: JS went wrong');
-        }
-    }, 1000);
+    if (!error) {
+      resolve({ username: "javascript", password: "123" });
+    } else {
+      reject("ERROR: JS went wrong");
+    }
+  }, 1000);
 });
 
 // Cleaner way to consume promise
-async function consumePromiseFive(){
-    try {
-        const response = await promiseFive; // pauses here until resolved/rejected
-        console.log(response);
-    } catch (error) {
-        console.log(error);
-    }
+async function consumePromiseFive() {
+  try {
+    const response = await promiseFive; // pauses here until resolved/rejected
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 consumePromiseFive(); // you correctly called it (good)
 
-
 // -------------------- FETCH (REAL API CALL) --------------------
 
 // fetch returns a promise
-fetch('https://api.github.com/users/hiteshchoudhary')
-.then((response) => {
+fetch("https://api.github.com/users/hiteshchoudhary")
+  .then((response) => {
     return response.json(); // converting response → JSON (also async)
-})
-.then((data) => {
+  })
+  .then((data) => {
     console.log(data); // actual data
-})
-.catch((error) => console.log(error));
-
+  })
+  .catch((error) => console.log(error));
 
 // -------------------- NOTE --------------------
 // Promise.all exists → runs multiple promises in parallel
